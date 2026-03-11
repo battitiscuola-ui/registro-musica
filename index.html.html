@@ -13,10 +13,8 @@
   --accent:#5b9cf6;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
 body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;min-height:100vh;padding-bottom:90px}
 
-/* ── TOPBAR ── */
 .topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 16px;display:flex;align-items:center;gap:10px;height:56px;position:sticky;top:0;z-index:50}
 .logo{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px}
 .logo .clef{font-size:24px}
@@ -27,43 +25,33 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .sync-lbl{font-size:9px;color:var(--muted);letter-spacing:.1em}
 
-/* ── COURSE FILTER STRIP ── */
 .filter-strip{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:56px;z-index:40}
 .filter-strip::-webkit-scrollbar{display:none}
 .ftab{display:flex;align-items:center;gap:6px;padding:7px 13px;border-radius:20px;border:1px solid var(--border2);background:none;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:11px;white-space:nowrap;cursor:pointer;transition:all .15s;flex-shrink:0}
-.ftab:hover{border-color:var(--accent);color:var(--text)}
-.ftab.on{color:#000;border-color:transparent;font-weight:500}
 .ftab .fdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .ftab .fbadge{background:rgba(0,0,0,.2);border-radius:20px;padding:1px 6px;font-size:10px}
 
-/* ── SEARCH + ACTIONS ── */
 .action-bar{padding:14px 16px;display:flex;gap:10px;align-items:center}
 .search-w{flex:1;position:relative}
-.search-w input{width:100%;background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:10px 13px 10px 36px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;transition:border-color .2s;-webkit-appearance:none}
+.search-w input{width:100%;background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:10px 13px 10px 36px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;-webkit-appearance:none}
 .search-w input:focus{border-color:var(--accent)}
 .search-w input::placeholder{color:var(--muted)}
-.search-w .si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px}
-.btn-add-fab{background:linear-gradient(135deg,var(--accent),#3a7ed6);color:#fff;border:none;border-radius:8px;padding:10px 14px;font-size:18px;cursor:pointer;flex-shrink:0;transition:opacity .2s;line-height:1}
-.btn-add-fab:hover{opacity:.85}
+.search-w .si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
 
-/* ── STATS ── */
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:0 16px 14px}
 .sc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
 .sl{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .sv{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--accent);line-height:1}
 
-/* ── CARD LIST (mobile) ── */
 .card-list{padding:0 16px;display:flex;flex-direction:column;gap:10px}
-.stu-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;transition:background .15s}
-.stu-card:active{background:var(--card2)}
+.stu-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px}
 .stu-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
 .stu-name{font-size:14px;font-weight:500;color:var(--text);line-height:1.2}
 .stu-meta{font-size:10px;color:var(--muted);margin-top:3px}
 .stu-actions{display:flex;gap:6px;flex-shrink:0}
-.sa{background:none;border:1px solid var(--border2);border-radius:7px;padding:6px 9px;cursor:pointer;font-size:13px;color:var(--muted);transition:all .14s;-webkit-tap-highlight-color:transparent}
+.sa{background:none;border:1px solid var(--border2);border-radius:7px;padding:6px 9px;cursor:pointer;font-size:13px;color:var(--muted);-webkit-tap-highlight-color:transparent}
 .sa:active{background:rgba(91,156,246,.1);border-color:var(--accent);color:var(--accent)}
 .sa.del:active{background:rgba(232,106,106,.1);border-color:#e86a6a;color:#e86a6a}
-
 .stu-card-mid{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
 .badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
 .lv-principiante{background:rgba(110,203,138,.12);color:#6ecb8a;border:1px solid rgba(110,203,138,.25)}
@@ -71,28 +59,22 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 .lv-intermedio{background:rgba(232,194,90,.12);color:#e8c25a;border:1px solid rgba(232,194,90,.25)}
 .lv-avanzato{background:rgba(232,133,90,.12);color:#e8855a;border:1px solid rgba(232,133,90,.25)}
 .lv-esperto{background:rgba(232,106,106,.12);color:#e86a6a;border:1px solid rgba(232,106,106,.25)}
-
 .ins-chip{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:var(--muted)}
 .ins-chip .cdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-
 .brani-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
 .bt{display:inline-block;background:rgba(255,255,255,.05);border:1px solid var(--border2);border-radius:4px;padding:2px 7px;font-size:10px;color:var(--text)}
 .note-txt{font-size:11px;color:var(--muted);font-style:italic;line-height:1.4}
-
 .empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
 .empty-icon{font-size:40px;display:block;margin-bottom:12px;opacity:.25}
 .empty-txt{font-size:12px;line-height:1.6}
 
-/* ── FAB BOTTOM ── */
 .fab-row{position:fixed;bottom:20px;right:16px;display:flex;flex-direction:column;gap:10px;z-index:60}
-.fab{width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.5);transition:transform .15s,opacity .2s;-webkit-tap-highlight-color:transparent}
+.fab{width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.5);transition:transform .15s;-webkit-tap-highlight-color:transparent}
 .fab:active{transform:scale(.92)}
 .fab-main{background:linear-gradient(135deg,var(--accent),#3a7ed6);color:#fff}
 .fab-ins{background:var(--card2);color:var(--muted);border:1px solid var(--border2);font-size:18px}
-.fab-label{position:absolute;right:62px;background:var(--card2);border:1px solid var(--border2);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--text);white-space:nowrap;pointer-events:none}
 
-/* ── MODAL ── */
-.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);z-index:200;align-items:flex-end;justify-content:center;padding:0}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);z-index:200;align-items:flex-end;justify-content:center}
 .ov.open{display:flex}
 .mo{background:var(--card);border:1px solid var(--border2);border-radius:18px 18px 0 0;width:100%;max-height:92vh;overflow-y:auto;animation:slideUp .25s ease;padding-bottom:env(safe-area-inset-bottom)}
 @media(min-width:600px){
@@ -107,7 +89,7 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 .mb{padding:18px 20px;display:flex;flex-direction:column;gap:14px}
 .fi{display:flex;flex-direction:column;gap:6px}
 .fi label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.fi input,.fi select,.fi textarea{background:var(--surface);border:1px solid var(--border2);border-radius:9px;padding:12px 13px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:14px;outline:none;transition:border-color .2s;-webkit-appearance:none;resize:vertical;width:100%}
+.fi input,.fi select,.fi textarea{background:var(--surface);border:1px solid var(--border2);border-radius:9px;padding:12px 13px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:14px;outline:none;-webkit-appearance:none;resize:vertical;width:100%;transition:border-color .2s}
 .fi input:focus,.fi select:focus,.fi textarea:focus{border-color:var(--accent)}
 .fi select option{background:#13161b}
 .fi textarea{min-height:80px}
@@ -120,26 +102,22 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 .bsave{flex:2;background:linear-gradient(135deg,var(--accent),#3a7ed6);border:none;border-radius:9px;padding:13px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;cursor:pointer;transition:opacity .2s}
 .bsave:disabled{opacity:.4}
 
-/* color picker */
 .crow{display:flex;gap:9px;flex-wrap:wrap;margin-top:4px}
 .copt{width:30px;height:30px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:transform .14s}
 .copt:active{transform:scale(1.2)}
 .copt.sel{border-color:var(--text)}
 
-/* toast */
 .toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(40px);background:var(--card2);border:1px solid var(--border2);border-radius:10px;padding:11px 20px;font-size:12px;color:var(--text);z-index:300;transition:transform .3s,opacity .3s;opacity:0;white-space:nowrap;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 .toast.ok{border-color:#6ecb8a;color:#6ecb8a}
 .toast.err{border-color:#e86a6a;color:#e86a6a}
 
-/* loading */
 .loading-screen{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
 .loading-screen.hidden{display:none}
 .loading-clef{font-size:52px;animation:rot 2s linear infinite}
 @keyframes rot{to{transform:rotate(360deg)}}
 .loading-txt{font-size:11px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase}
 
-/* desktop sidebar layout */
 @media(min-width:860px){
   body{padding-bottom:0}
   .fab-row{display:none}
@@ -149,14 +127,8 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
   .action-bar{padding:20px 24px 12px}
   .stats{padding:0 24px 16px;grid-template-columns:repeat(4,1fr)}
   .card-list{padding:0 24px}
-  .stu-card{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto auto;gap:0 16px;align-items:start}
-  .stu-card-top{grid-column:1;grid-row:1;margin-bottom:6px}
-  .stu-card-mid{grid-column:1;grid-row:2;margin-bottom:6px}
-  .brani-row{grid-column:1;grid-row:3;margin-bottom:0}
-  .note-txt{grid-column:1;grid-row:4}
-  .stu-actions{grid-column:2;grid-row:1/5;flex-direction:column;justify-content:flex-start;padding-top:2px}
 }
-.topbar-desktop-btns{display:none;gap:9px}
+.topbar-desktop-btns{display:none;gap:9px;margin-left:12px}
 .btn-dt{display:flex;align-items:center;gap:7px;padding:8px 16px;border-radius:7px;border:none;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:opacity .2s}
 .btn-dt:hover{opacity:.85}
 .btn-dt-ins{background:var(--card2);color:var(--muted);border:1px solid var(--border2)}
@@ -172,20 +144,18 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 
 <div class="toast" id="toast"></div>
 
-<!-- TOPBAR -->
 <div class="topbar">
   <div class="logo"><span class="clef">𝄞</span> Registro Allievi</div>
   <div class="sync-row">
     <span class="sync-dot" id="syncDot"></span>
-    <span class="sync-lbl" id="syncLbl">Connesso</span>
+    <span class="sync-lbl" id="syncLbl">Connessione…</span>
   </div>
-  <div class="topbar-desktop-btns" id="desktopBtns">
+  <div class="topbar-desktop-btns">
     <button class="btn-dt btn-dt-ins" onclick="openInsModal()">＋ Insegnante</button>
     <button class="btn-dt btn-dt-stu" onclick="openStuModal()">＋ Allievo</button>
   </div>
 </div>
 
-<!-- COURSE FILTER STRIP -->
 <div class="filter-strip" id="filterStrip">
   <button class="ftab on" id="ftab-all" onclick="selAll()">
     <span>◈</span> Tutti
@@ -193,7 +163,6 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
   </button>
 </div>
 
-<!-- SEARCH + ACTION BAR -->
 <div class="action-bar">
   <div class="search-w">
     <span class="si">🔍</span>
@@ -201,16 +170,12 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
   </div>
 </div>
 
-<!-- STATS -->
 <div class="stats" id="statsRow"></div>
-
-<!-- CARD LIST -->
 <div class="card-list" id="cardList"></div>
 
-<!-- FAB (mobile) -->
 <div class="fab-row">
-  <button class="fab fab-ins" onclick="openInsModal()" title="Nuovo insegnante">👩‍🏫</button>
-  <button class="fab fab-main" onclick="openStuModal()" title="Nuovo allievo">＋</button>
+  <button class="fab fab-ins" onclick="openInsModal()">👩‍🏫</button>
+  <button class="fab fab-main" onclick="openStuModal()">＋</button>
 </div>
 
 <!-- MODAL ALLIEVO -->
@@ -243,7 +208,7 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
     <div class="btagrow" id="bprev"></div>
    </div>
    <div class="fi"><label>Note & Specifiche</label>
-    <textarea id="fNote" placeholder="es. disponibile il giovedì, preferisce jazz…"></textarea>
+    <textarea id="fNote" placeholder="es. disponibile il giovedì…"></textarea>
    </div>
   </div>
   <div class="mf">
@@ -279,29 +244,66 @@ const COLORS=['#5b9cf6','#e8855a','#6ecb8a','#c97be8','#e8c25a','#e86a6a','#5acf
 const LVM={principiante:'Principiante',base:'Base',intermedio:'Intermedio',avanzato:'Avanzato',esperto:'Esperto'};
 let insegnanti=[],allievi=[],curBrani=[],editStu=null,editIns=null,selIns=null,selColor=COLORS[0];
 
-/* ── API ── */
+/* ── JSONP (bypassa CORS) ── */
+function jsonpCall(url){
+  return new Promise((resolve,reject)=>{
+    const cb='_cb'+Date.now();
+    const s=document.createElement('script');
+    const timer=setTimeout(()=>{
+      delete window[cb]; s.remove();
+      reject(new Error('Timeout'));
+    },15000);
+    window[cb]=data=>{
+      clearTimeout(timer); delete window[cb]; s.remove();
+      resolve(data);
+    };
+    s.src=url+(url.includes('?')?'&':'?')+'callback='+cb;
+    s.onerror=()=>{clearTimeout(timer);delete window[cb];s.remove();reject(new Error('Script error'));};
+    document.head.appendChild(s);
+  });
+}
+
 async function apiGet(){
   setSyncing(true);
   try{
-    const r=await fetch(API+"?action=getData");
-    const d=await r.json();
+    const d=await jsonpCall(API+'?action=getData');
     insegnanti=d.insegnanti||[]; allievi=d.allievi||[];
     setSyncing(false); return true;
-  }catch(e){setError();return false;}
+  }catch(e){console.error(e);setError();return false;}
 }
+
 async function apiSave(){
   setSyncing(true);
   document.getElementById('stuSaveBtn').disabled=true;
   document.getElementById('insSaveBtn').disabled=true;
   try{
-    await fetch(API,{method:"POST",body:JSON.stringify({action:"saveData",insegnanti,allievi})});
-    setSyncing(false); showToast("✓ Salvato","ok");
-  }catch(e){setError();showToast("⚠ Errore salvataggio","err");}
-  finally{
+    // For save we use an iframe trick (POST via form)
+    const form=document.createElement('form');
+    form.method='POST';
+    form.action=API;
+    form.target='_save_frame';
+    form.style.display='none';
+    const inp=document.createElement('input');
+    inp.type='hidden'; inp.name='';
+    form.appendChild(inp);
+
+    // Use JSONP GET with encoded data for save
+    const payload=encodeURIComponent(JSON.stringify({action:'saveData',insegnanti,allievi}));
+    await jsonpCall(API+'?action=saveData&data='+payload);
+    setSyncing(false); showToast('✓ Salvato','ok');
+  }catch(e){
+    // fallback: try fetch no-cors (fire and forget)
+    try{
+      fetch(API,{method:'POST',mode:'no-cors',
+        body:JSON.stringify({action:'saveData',insegnanti,allievi})});
+      setSyncing(false); showToast('✓ Inviato','ok');
+    }catch(e2){setError();showToast('⚠ Errore salvataggio','err');}
+  }finally{
     document.getElementById('stuSaveBtn').disabled=false;
     document.getElementById('insSaveBtn').disabled=false;
   }
 }
+
 function setSyncing(v){
   const d=document.getElementById('syncDot'),l=document.getElementById('syncLbl');
   if(v){d.className='sync-dot syncing';l.textContent='Salvataggio…';}
@@ -312,7 +314,6 @@ function setError(){
   document.getElementById('syncLbl').textContent='Errore';
 }
 
-/* ── TOAST ── */
 let toastTimer;
 function showToast(msg,type=''){
   const t=document.getElementById('toast');
@@ -322,46 +323,33 @@ function showToast(msg,type=''){
   toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
 }
 
-/* ── FILTER STRIP ── */
 function renderFilterStrip(){
   document.getElementById('cnt-all').textContent=allievi.length;
   document.getElementById('ftab-all').classList.toggle('on',selIns===null);
-  if(selIns===null){
-    document.getElementById('ftab-all').style.background='var(--text)';
-    document.getElementById('ftab-all').style.color='#000';
-  } else {
-    document.getElementById('ftab-all').style.background='';
-    document.getElementById('ftab-all').style.color='';
-  }
-  // remove old tabs
+  const onAll=selIns===null;
+  document.getElementById('ftab-all').style.cssText=onAll?'background:var(--text);color:#000;border-color:transparent':'';
   document.querySelectorAll('.ftab:not(#ftab-all)').forEach(e=>e.remove());
   const strip=document.getElementById('filterStrip');
   insegnanti.forEach(ins=>{
     const cnt=allievi.filter(a=>a.insId===ins.id).length;
     const on=selIns===ins.id;
     const btn=document.createElement('button');
-    btn.className='ftab'+(on?' on':'');
+    btn.className='ftab';
     btn.style.cssText=on?`background:${ins.color};color:#000;border-color:transparent`:'';
-    btn.innerHTML=`<span class="fdot" style="background:${ins.color}${on?';box-shadow:0 0 6px '+ins.color:''}"></span>${esc(ins.nome.split(' ').slice(-1)[0])}<span class="fbadge">${cnt}</span>`;
+    btn.innerHTML=`<span class="fdot" style="background:${ins.color}"></span>${esc(ins.nome.split(' ').slice(-1)[0])}<span class="fbadge">${cnt}</span>`;
     btn.onclick=()=>selTeacher(ins.id);
     strip.appendChild(btn);
   });
 }
 
 function setAccent(c){document.documentElement.style.setProperty('--accent',c);}
-
-function selAll(){
-  selIns=null; setAccent('#5b9cf6');
-  renderFilterStrip(); renderStats(); renderCards();
-}
+function selAll(){selIns=null;setAccent('#5b9cf6');renderFilterStrip();renderStats();renderCards();}
 function selTeacher(id){
   selIns=id;
-  const ins=insegnanti.find(x=>x.id===id); if(!ins)return;
-  setAccent(ins.color);
-  renderFilterStrip(); renderStats(); renderCards();
+  const ins=insegnanti.find(x=>x.id===id);if(!ins)return;
+  setAccent(ins.color);renderFilterStrip();renderStats();renderCards();
 }
 
-/* ── STATS ── */
 function renderStats(){
   const pool=selIns===null?allievi:allievi.filter(a=>a.insId===selIns);
   const lvc={};
@@ -369,8 +357,7 @@ function renderStats(){
   const top=Object.entries(lvc).sort((a,b)=>b[1]-a[1])[0];
   const brani=pool.reduce((s,a)=>s+(a.brani||[]).length,0);
   const items=[
-    {l:'Allievi',v:pool.length},
-    {l:'Brani totali',v:brani},
+    {l:'Allievi',v:pool.length},{l:'Brani totali',v:brani},
     {l:'Livello comune',v:top?LVM[top[0]]:'—'},
     {l:selIns===null?'Insegnanti':'Corso',v:selIns===null?insegnanti.length:(insegnanti.find(x=>x.id===selIns)||{corso:'—'}).corso},
   ];
@@ -378,17 +365,16 @@ function renderStats(){
     `<div class="sc"><div class="sl">${s.l}</div><div class="sv">${s.v}</div></div>`).join('');
 }
 
-/* ── CARDS ── */
 function renderCards(){
   const q=document.getElementById('searchInput').value.toLowerCase();
   let pool=selIns===null?[...allievi]:allievi.filter(a=>a.insId===selIns);
   if(q) pool=pool.filter(a=>(a.nome+a.livello+(a.brani||[]).join(' ')+(a.note||'')).toLowerCase().includes(q));
   const cl=document.getElementById('cardList');
   if(!pool.length){
-    cl.innerHTML=`<div class="empty-state"><span class="empty-icon">𝄾</span><span class="empty-txt">${allievi.length===0?'Nessun allievo ancora.<br>Tocca <strong>＋</strong> per iniziare.':'Nessun risultato per la ricerca.'}</span></div>`;
+    cl.innerHTML=`<div class="empty-state"><span class="empty-icon">𝄾</span><span class="empty-txt">${allievi.length===0?'Nessun allievo ancora.<br>Tocca <strong>＋</strong> per iniziare.':'Nessun risultato.'}</span></div>`;
     return;
   }
-  cl.innerHTML=pool.map((a,i)=>{
+  cl.innerHTML=pool.map((a)=>{
     const ins=insegnanti.find(x=>x.id===a.insId);
     return `<div class="stu-card">
       <div class="stu-card-top">
@@ -397,8 +383,8 @@ function renderCards(){
           <div class="stu-meta">${a.eta?a.eta+' anni · ':''}${ins?`<span style="color:${ins.color}">${esc(ins.corso)}</span>`:'—'}</div>
         </div>
         <div class="stu-actions">
-          <button class="sa" onclick="openStuModal(${a.id})" title="Modifica">✏️</button>
-          <button class="sa del" onclick="delStu(${a.id})" title="Elimina">🗑️</button>
+          <button class="sa" onclick="openStuModal(${a.id})">✏️</button>
+          <button class="sa del" onclick="delStu(${a.id})">🗑️</button>
         </div>
       </div>
       ${a.livello?`<div class="stu-card-mid"><span class="badge lv-${a.livello}">${LVM[a.livello]}</span>${ins?`<span class="ins-chip"><span class="cdot" style="background:${ins.color}"></span>${esc(ins.nome)}</span>`:''}</div>`:''}
@@ -408,9 +394,8 @@ function renderCards(){
   }).join('');
 }
 
-/* ── ALLIEVO MODAL ── */
 function openStuModal(id=null){
-  editStu=id; curBrani=[];
+  editStu=id;curBrani=[];
   if(!insegnanti.length){alert('Prima aggiungi un insegnante!');openInsModal();return;}
   const sel=document.getElementById('fIns');
   sel.innerHTML='<option value="">— Seleziona insegnante —</option>'+
@@ -427,7 +412,7 @@ function openStuModal(id=null){
   } else {
     document.getElementById('stuMT').textContent='Nuovo Allievo';
     ['fNome','fEta','fNote'].forEach(x=>document.getElementById(x).value='');
-    sel.value=selIns||''; document.getElementById('fLv').value='';
+    sel.value=selIns||'';document.getElementById('fLv').value='';
   }
   document.getElementById('fBrano').value='';
   renderBP();
@@ -459,18 +444,17 @@ async function saveStu(){
     brani:[...curBrani],note:document.getElementById('fNote').value.trim()};
   if(editStu!==null){const idx=allievi.findIndex(x=>x.id===editStu);allievi[idx]=obj;}
   else allievi.push(obj);
-  closeStu(); renderFilterStrip(); renderStats(); renderCards();
+  closeStu();renderFilterStrip();renderStats();renderCards();
   await apiSave();
 }
 async function delStu(id){
   if(confirm('Eliminare questo allievo?')){
     allievi=allievi.filter(x=>x.id!==id);
-    renderFilterStrip(); renderStats(); renderCards();
+    renderFilterStrip();renderStats();renderCards();
     await apiSave();
   }
 }
 
-/* ── INSEGNANTE MODAL ── */
 function buildCrow(){
   document.getElementById('crowEl').innerHTML=COLORS.map(c=>
     `<div class="copt${selColor===c?' sel':''}" style="background:${c}" onclick="pickC('${c}')"></div>`).join('');
@@ -502,20 +486,18 @@ async function saveIns(){
   const obj={id:editIns!==null?editIns:Date.now(),nome,corso,color:selColor};
   if(editIns!==null){const idx=insegnanti.findIndex(x=>x.id===editIns);insegnanti[idx]=obj;}
   else insegnanti.push(obj);
-  closeIns(); renderFilterStrip(); renderStats(); renderCards();
+  closeIns();renderFilterStrip();renderStats();renderCards();
   await apiSave();
 }
 
-/* ── UTILS ── */
 function esc(s=''){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function ovClick(e,id){if(e.target===document.getElementById(id)){id==='stuOv'?closeStu():closeIns();}}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeStu();closeIns();}});
 
-/* ── INIT ── */
 (async()=>{
   await apiGet();
   document.getElementById('loadingScreen').classList.add('hidden');
-  renderFilterStrip(); renderStats(); renderCards();
+  renderFilterStrip();renderStats();renderCards();
 })();
 </script>
 </body>
