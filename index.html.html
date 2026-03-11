@@ -6,12 +6,7 @@
 <title>Registro Allievi — Scuola di Musica</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#08090b; --surface:#0e1014; --card:#13161b; --card2:#181c22;
-  --border:#252930; --border2:#2e333d;
-  --text:#dde3ee; --muted:#636b7a; --faint:#3a404d;
-  --accent:#5b9cf6;
-}
+:root{--bg:#08090b;--surface:#0e1014;--card:#13161b;--card2:#181c22;--border:#252930;--border2:#2e333d;--text:#dde3ee;--muted:#636b7a;--faint:#3a404d;--accent:#5b9cf6}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;min-height:100vh;padding-bottom:90px}
 
@@ -24,6 +19,11 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 .sync-dot.error{background:#e86a6a;box-shadow:0 0 6px #e86a6a}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .sync-lbl{font-size:9px;color:var(--muted);letter-spacing:.1em}
+.topbar-desktop-btns{display:none;gap:9px;margin-left:12px}
+.btn-dt{display:flex;align-items:center;gap:7px;padding:8px 16px;border-radius:7px;border:none;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:opacity .2s}
+.btn-dt:hover{opacity:.85}
+.btn-dt-corso{background:var(--card2);color:var(--muted);border:1px solid var(--border2)}
+.btn-dt-stu{background:linear-gradient(135deg,var(--accent),#3a7ed6);color:#fff}
 
 .filter-strip{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:56px;z-index:40}
 .filter-strip::-webkit-scrollbar{display:none}
@@ -33,7 +33,7 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 
 .action-bar{padding:14px 16px;display:flex;gap:10px;align-items:center}
 .search-w{flex:1;position:relative}
-.search-w input{width:100%;background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:10px 13px 10px 36px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;-webkit-appearance:none}
+.search-w input{width:100%;background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:10px 13px 10px 36px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;-webkit-appearance:none;transition:border-color .2s}
 .search-w input:focus{border-color:var(--accent)}
 .search-w input::placeholder{color:var(--muted)}
 .search-w .si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
@@ -44,14 +44,23 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 .sv{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--accent);line-height:1}
 
 .card-list{padding:0 16px;display:flex;flex-direction:column;gap:10px}
+
+.section-header{display:flex;align-items:center;gap:10px;padding:16px 0 6px}
+.sh-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sh-title{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
+.sh-ins{font-size:10px;color:var(--muted);flex-shrink:0}
+.sh-line{flex:1;height:1px;background:var(--border)}
+.sh-edit{background:none;border:none;cursor:pointer;color:var(--faint);font-size:12px;padding:0 2px;flex-shrink:0}
+
 .stu-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px}
 .stu-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
 .stu-name{font-size:14px;font-weight:500;color:var(--text);line-height:1.2}
 .stu-meta{font-size:10px;color:var(--muted);margin-top:3px}
 .stu-actions{display:flex;gap:6px;flex-shrink:0}
-.sa{background:none;border:1px solid var(--border2);border-radius:7px;padding:6px 9px;cursor:pointer;font-size:13px;color:var(--muted);-webkit-tap-highlight-color:transparent}
-.sa:active{background:rgba(91,156,246,.1);border-color:var(--accent);color:var(--accent)}
-.sa.del:active{background:rgba(232,106,106,.1);border-color:#e86a6a;color:#e86a6a}
+.sa{background:none;border:1px solid var(--border2);border-radius:7px;padding:6px 9px;cursor:pointer;font-size:13px;color:var(--muted);-webkit-tap-highlight-color:transparent;transition:all .14s}
+.sa:active,.sa:hover{background:rgba(91,156,246,.1);border-color:var(--accent);color:var(--accent)}
+.sa.del:active,.sa.del:hover{background:rgba(232,106,106,.1);border-color:#e86a6a;color:#e86a6a}
+
 .stu-card-mid{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
 .badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
 .lv-principiante{background:rgba(110,203,138,.12);color:#6ecb8a;border:1px solid rgba(110,203,138,.25)}
@@ -59,11 +68,37 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 .lv-intermedio{background:rgba(232,194,90,.12);color:#e8c25a;border:1px solid rgba(232,194,90,.25)}
 .lv-avanzato{background:rgba(232,133,90,.12);color:#e8855a;border:1px solid rgba(232,133,90,.25)}
 .lv-esperto{background:rgba(232,106,106,.12);color:#e86a6a;border:1px solid rgba(232,106,106,.25)}
-.ins-chip{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:var(--muted)}
-.ins-chip .cdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+
 .brani-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
 .bt{display:inline-block;background:rgba(255,255,255,.05);border:1px solid var(--border2);border-radius:4px;padding:2px 7px;font-size:10px;color:var(--text)}
-.note-txt{font-size:11px;color:var(--muted);font-style:italic;line-height:1.4}
+.note-txt{font-size:11px;color:var(--muted);font-style:italic;line-height:1.4;margin-bottom:6px}
+
+/* MATERIALE DIDATTICO */
+.materiale-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.mat-link{display:inline-flex;align-items:center;gap:5px;background:rgba(91,156,246,.08);border:1px solid rgba(91,156,246,.2);border-radius:6px;padding:4px 9px;font-size:10px;color:var(--accent);text-decoration:none;transition:all .14s}
+.mat-link:hover{background:rgba(91,156,246,.15)}
+.mat-link .mat-icon{font-size:12px}
+.mat-section-title{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;margin-top:6px}
+
+/* UPLOAD AREA */
+.upload-area{border:2px dashed var(--border2);border-radius:10px;padding:20px;text-align:center;cursor:pointer;transition:border-color .2s;background:var(--surface)}
+.upload-area:hover,.upload-area.drag{border-color:var(--accent);background:rgba(91,156,246,.05)}
+.upload-area input{display:none}
+.upload-icon{font-size:28px;display:block;margin-bottom:8px;opacity:.5}
+.upload-txt{font-size:11px;color:var(--muted);line-height:1.5}
+.upload-progress{margin-top:10px;display:none}
+.prog-bar-wrap{background:var(--border);border-radius:4px;height:4px;overflow:hidden}
+.prog-bar{height:100%;background:var(--accent);border-radius:4px;transition:width .3s;width:0%}
+.prog-txt{font-size:10px;color:var(--muted);margin-top:4px}
+
+/* FILE LIST in modal */
+.file-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.file-item{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:8px 10px}
+.file-item-icon{font-size:16px;flex-shrink:0}
+.file-item-name{flex:1;font-size:11px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-item-del{background:none;border:none;cursor:pointer;color:var(--faint);font-size:14px;padding:0;flex-shrink:0;transition:color .14s}
+.file-item-del:hover{color:#e86a6a}
+
 .empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
 .empty-icon{font-size:40px;display:block;margin-bottom:12px;opacity:.25}
 .empty-txt{font-size:12px;line-height:1.6}
@@ -72,15 +107,12 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 .fab{width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.5);transition:transform .15s;-webkit-tap-highlight-color:transparent}
 .fab:active{transform:scale(.92)}
 .fab-main{background:linear-gradient(135deg,var(--accent),#3a7ed6);color:#fff}
-.fab-ins{background:var(--card2);color:var(--muted);border:1px solid var(--border2);font-size:18px}
+.fab-corso{background:var(--card2);color:var(--muted);border:1px solid var(--border2);font-size:18px}
 
 .ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(6px);z-index:200;align-items:flex-end;justify-content:center}
 .ov.open{display:flex}
 .mo{background:var(--card);border:1px solid var(--border2);border-radius:18px 18px 0 0;width:100%;max-height:92vh;overflow-y:auto;animation:slideUp .25s ease;padding-bottom:env(safe-area-inset-bottom)}
-@media(min-width:600px){
-  .ov{align-items:center;padding:20px}
-  .mo{border-radius:14px;max-width:560px;max-height:90vh}
-}
+@media(min-width:600px){.ov{align-items:center;padding:20px}.mo{border-radius:14px;max-width:580px;max-height:90vh}}
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .mo-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:10px auto 0}
 .mh{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 12px;border-bottom:1px solid var(--border)}
@@ -92,7 +124,7 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 .fi input,.fi select,.fi textarea{background:var(--surface);border:1px solid var(--border2);border-radius:9px;padding:12px 13px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:14px;outline:none;-webkit-appearance:none;resize:vertical;width:100%;transition:border-color .2s}
 .fi input:focus,.fi select:focus,.fi textarea:focus{border-color:var(--accent)}
 .fi select option{background:#13161b}
-.fi textarea{min-height:80px}
+.fi textarea{min-height:74px}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .btagrow{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
 .btag2{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.06);border:1px solid var(--border2);border-radius:6px;padding:4px 10px;font-size:12px;color:var(--text)}
@@ -111,6 +143,7 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 .toast.ok{border-color:#6ecb8a;color:#6ecb8a}
 .toast.err{border-color:#e86a6a;color:#e86a6a}
+.toast.info{border-color:var(--accent);color:var(--accent)}
 
 .loading-screen{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
 .loading-screen.hidden{display:none}
@@ -128,11 +161,6 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
   .stats{padding:0 24px 16px;grid-template-columns:repeat(4,1fr)}
   .card-list{padding:0 24px}
 }
-.topbar-desktop-btns{display:none;gap:9px;margin-left:12px}
-.btn-dt{display:flex;align-items:center;gap:7px;padding:8px 16px;border-radius:7px;border:none;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:opacity .2s}
-.btn-dt:hover{opacity:.85}
-.btn-dt-ins{background:var(--card2);color:var(--muted);border:1px solid var(--border2)}
-.btn-dt-stu{background:linear-gradient(135deg,var(--accent),#3a7ed6);color:#fff}
 </style>
 </head>
 <body>
@@ -141,7 +169,6 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
   <span class="loading-clef">𝄞</span>
   <span class="loading-txt">Caricamento registro…</span>
 </div>
-
 <div class="toast" id="toast"></div>
 
 <div class="topbar">
@@ -151,7 +178,7 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
     <span class="sync-lbl" id="syncLbl">Connessione…</span>
   </div>
   <div class="topbar-desktop-btns">
-    <button class="btn-dt btn-dt-ins" onclick="openInsModal()">＋ Insegnante</button>
+    <button class="btn-dt btn-dt-corso" onclick="openCorsoModal()">🎵 Nuovo Corso</button>
     <button class="btn-dt btn-dt-stu" onclick="openStuModal()">＋ Allievo</button>
   </div>
 </div>
@@ -166,7 +193,7 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 <div class="action-bar">
   <div class="search-w">
     <span class="si">🔍</span>
-    <input type="text" id="searchInput" placeholder="Cerca allievo, brano…" oninput="renderCards()">
+    <input type="text" id="searchInput" placeholder="Cerca allievo, brano, corso…" oninput="renderCards()">
   </div>
 </div>
 
@@ -174,8 +201,34 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 <div class="card-list" id="cardList"></div>
 
 <div class="fab-row">
-  <button class="fab fab-ins" onclick="openInsModal()">👩‍🏫</button>
-  <button class="fab fab-main" onclick="openStuModal()">＋</button>
+  <button class="fab fab-corso" onclick="openCorsoModal()" title="Nuovo corso">🎵</button>
+  <button class="fab fab-main" onclick="openStuModal()" title="Nuovo allievo">＋</button>
+</div>
+
+<!-- MODAL CORSO -->
+<div class="ov" id="corsoOv" onclick="ovClick(event,'corsoOv')">
+ <div class="mo">
+  <div class="mo-handle"></div>
+  <div class="mh">
+   <span class="mt" id="corsoMT">Nuovo Corso</span>
+   <button class="bx" onclick="closeCorso()">✕</button>
+  </div>
+  <div class="mb">
+   <div class="fi"><label>Nome Corso / Strumento *</label>
+    <input id="cNome" placeholder="es. Pianoforte, Chitarra, Solfeggio…" autocomplete="off">
+   </div>
+   <div class="fi"><label>Insegnante *</label>
+    <input id="cIns" placeholder="es. Prof.ssa Laura Bianchi" autocomplete="off">
+   </div>
+   <div class="fi"><label>Colore identificativo</label>
+    <div class="crow" id="crowEl"></div>
+   </div>
+  </div>
+  <div class="mf">
+   <button class="bcancel" onclick="closeCorso()">Annulla</button>
+   <button class="bsave" id="corsoSaveBtn" onclick="saveCorso()">Salva Corso</button>
+  </div>
+ </div>
 </div>
 
 <!-- MODAL ALLIEVO -->
@@ -187,9 +240,13 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
    <button class="bx" onclick="closeStu()">✕</button>
   </div>
   <div class="mb">
-   <div class="fi"><label>Nome e Cognome *</label><input id="fNome" placeholder="es. Marco Rossi" autocomplete="off"></div>
+   <div class="fi"><label>Nome e Cognome *</label>
+    <input id="fNome" placeholder="es. Marco Rossi" autocomplete="off">
+   </div>
    <div class="row2">
-    <div class="fi"><label>Età</label><input type="number" id="fEta" placeholder="es. 14" min="1" max="99"></div>
+    <div class="fi"><label>Età</label>
+     <input type="number" id="fEta" placeholder="es. 14" min="1" max="99">
+    </div>
     <div class="fi"><label>Livello</label>
      <select id="fLv">
       <option value="">— Livello —</option>
@@ -201,14 +258,30 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
      </select>
     </div>
    </div>
-   <div class="fi"><label>Insegnante / Corso *</label><select id="fIns"></select></div>
+   <div class="fi"><label>Corso *</label>
+    <select id="fCorso"></select>
+   </div>
    <div class="fi">
     <label>Brani (premi Invio per aggiungere)</label>
     <input id="fBrano" placeholder="es. Fur Elise…" autocomplete="off" onkeydown="addB(event)">
     <div class="btagrow" id="bprev"></div>
    </div>
    <div class="fi"><label>Note & Specifiche</label>
-    <textarea id="fNote" placeholder="es. disponibile il giovedì…"></textarea>
+    <textarea id="fNote" placeholder="es. disponibile il giovedì, preferisce jazz…"></textarea>
+   </div>
+   <div class="fi">
+    <label>Materiale Didattico (PDF, Audio, Spartiti)</label>
+    <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()"
+         ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropFile(event)">
+     <input type="file" id="fileInput" accept=".pdf,.wav,.mp3,.mp4,.jpg,.jpeg,.png,.doc,.docx,.txt,.midi,.mid" multiple onchange="handleFiles(event)">
+     <span class="upload-icon">📁</span>
+     <span class="upload-txt">Tocca per scegliere file o trascina qui<br><small style="opacity:.6">PDF · Audio WAV/MP3 · Spartiti · Immagini</small></span>
+    </div>
+    <div class="upload-progress" id="uploadProgress">
+     <div class="prog-bar-wrap"><div class="prog-bar" id="progBar"></div></div>
+     <div class="prog-txt" id="progTxt">Caricamento…</div>
+    </div>
+    <div class="file-list" id="fileList"></div>
    </div>
   </div>
   <div class="mf">
@@ -218,47 +291,22 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
  </div>
 </div>
 
-<!-- MODAL INSEGNANTE -->
-<div class="ov" id="insOv" onclick="ovClick(event,'insOv')">
- <div class="mo">
-  <div class="mo-handle"></div>
-  <div class="mh">
-   <span class="mt" id="insMT">Nuovo Insegnante</span>
-   <button class="bx" onclick="closeIns()">✕</button>
-  </div>
-  <div class="mb">
-   <div class="fi"><label>Nome Insegnante *</label><input id="iNome" placeholder="es. Prof.ssa Laura Bianchi" autocomplete="off"></div>
-   <div class="fi"><label>Corso / Strumento *</label><input id="iCorso" placeholder="es. Pianoforte, Chitarra…" autocomplete="off"></div>
-   <div class="fi"><label>Colore identificativo</label><div class="crow" id="crowEl"></div></div>
-  </div>
-  <div class="mf">
-   <button class="bcancel" onclick="closeIns()">Annulla</button>
-   <button class="bsave" id="insSaveBtn" onclick="saveIns()">Salva</button>
-  </div>
- </div>
-</div>
-
 <script>
 const API="https://script.google.com/macros/s/AKfycbyWuyRdUeb6s6QfDWWqtF6hqbvzjmuxchCh2q-0_d7EVXPL3YvjI7E3QTHyE4aAqrL3bA/exec";
 const COLORS=['#5b9cf6','#e8855a','#6ecb8a','#c97be8','#e8c25a','#e86a6a','#5acfe8','#f5a0c0','#a0d4b8','#d4b896'];
 const LVM={principiante:'Principiante',base:'Base',intermedio:'Intermedio',avanzato:'Avanzato',esperto:'Esperto'};
-let insegnanti=[],allievi=[],curBrani=[],editStu=null,editIns=null,selIns=null,selColor=COLORS[0];
 
-/* ── JSONP (bypassa CORS) ── */
+let corsi=[],allievi=[],curBrani=[],curFiles=[],editStu=null,editCorso=null,selCorso=null,selColor=COLORS[0];
+
+/* ── JSONP ── */
 function jsonpCall(url){
   return new Promise((resolve,reject)=>{
-    const cb='_cb'+Date.now();
+    const cb='_cb'+Date.now()+Math.random().toString(36).slice(2);
     const s=document.createElement('script');
-    const timer=setTimeout(()=>{
-      delete window[cb]; s.remove();
-      reject(new Error('Timeout'));
-    },15000);
-    window[cb]=data=>{
-      clearTimeout(timer); delete window[cb]; s.remove();
-      resolve(data);
-    };
+    const timer=setTimeout(()=>{delete window[cb];s.remove();reject(new Error('Timeout'));},20000);
+    window[cb]=data=>{clearTimeout(timer);delete window[cb];s.remove();resolve(data);};
     s.src=url+(url.includes('?')?'&':'?')+'callback='+cb;
-    s.onerror=()=>{clearTimeout(timer);delete window[cb];s.remove();reject(new Error('Script error'));};
+    s.onerror=()=>{clearTimeout(timer);delete window[cb];s.remove();reject(new Error('Errore script'));};
     document.head.appendChild(s);
   });
 }
@@ -267,43 +315,109 @@ async function apiGet(){
   setSyncing(true);
   try{
     const d=await jsonpCall(API+'?action=getData');
-    insegnanti=d.insegnanti||[]; allievi=d.allievi||[];
-    setSyncing(false); return true;
+    if(d.corsi) corsi=d.corsi||[];
+    else if(d.insegnanti) corsi=d.insegnanti.map(i=>({id:i.id,nome:i.corso||i.nome,insegnante:i.nome,color:i.color}));
+    allievi=(d.allievi||[]).map(a=>({...a,corsoId:a.corsoId||a.insId||null,files:a.files||[]}));
+    setSyncing(false);return true;
   }catch(e){console.error(e);setError();return false;}
 }
 
 async function apiSave(){
   setSyncing(true);
   document.getElementById('stuSaveBtn').disabled=true;
-  document.getElementById('insSaveBtn').disabled=true;
+  document.getElementById('corsoSaveBtn').disabled=true;
   try{
-    // For save we use an iframe trick (POST via form)
-    const form=document.createElement('form');
-    form.method='POST';
-    form.action=API;
-    form.target='_save_frame';
-    form.style.display='none';
-    const inp=document.createElement('input');
-    inp.type='hidden'; inp.name='';
-    form.appendChild(inp);
-
-    // Use JSONP GET with encoded data for save
-    const payload=encodeURIComponent(JSON.stringify({action:'saveData',insegnanti,allievi}));
+    const payload=encodeURIComponent(JSON.stringify({action:'saveData',corsi,allievi}));
     await jsonpCall(API+'?action=saveData&data='+payload);
-    setSyncing(false); showToast('✓ Salvato','ok');
+    setSyncing(false);showToast('✓ Salvato','ok');
   }catch(e){
-    // fallback: try fetch no-cors (fire and forget)
     try{
-      fetch(API,{method:'POST',mode:'no-cors',
-        body:JSON.stringify({action:'saveData',insegnanti,allievi})});
-      setSyncing(false); showToast('✓ Inviato','ok');
+      fetch(API,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'saveData',corsi,allievi})});
+      setSyncing(false);showToast('✓ Inviato','ok');
     }catch(e2){setError();showToast('⚠ Errore salvataggio','err');}
   }finally{
     document.getElementById('stuSaveBtn').disabled=false;
-    document.getElementById('insSaveBtn').disabled=false;
+    document.getElementById('corsoSaveBtn').disabled=false;
   }
 }
 
+/* ── FILE UPLOAD ── */
+async function uploadFile(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=async e=>{
+      const base64=e.target.result.split(',')[1];
+      const mime=file.type||'application/octet-stream';
+      try{
+        showUploadProgress(0,'Caricamento '+file.name+'…');
+        // simulate progress
+        let p=0; const iv=setInterval(()=>{p=Math.min(p+15,85);showUploadProgress(p,null);},200);
+        const res=await jsonpCall(API+'?action=uploadFile&fileName='+encodeURIComponent(file.name)+'&mimeType='+encodeURIComponent(mime)+'&data='+encodeURIComponent(base64));
+        clearInterval(iv);
+        if(res.url){showUploadProgress(100,'Completato!');setTimeout(hideUploadProgress,800);resolve({name:file.name,url:res.url,type:mime});}
+        else{hideUploadProgress();reject(new Error(res.error||'Upload fallito'));}
+      }catch(err){hideUploadProgress();reject(err);}
+    };
+    reader.onerror=()=>reject(new Error('Lettura file fallita'));
+    reader.readAsDataURL(file);
+  });
+}
+
+function showUploadProgress(pct,txt){
+  const el=document.getElementById('uploadProgress');
+  el.style.display='block';
+  document.getElementById('progBar').style.width=pct+'%';
+  if(txt) document.getElementById('progTxt').textContent=txt;
+}
+function hideUploadProgress(){document.getElementById('uploadProgress').style.display='none';}
+
+async function handleFiles(e){
+  const files=Array.from(e.target.files);
+  for(const f of files){
+    if(f.size>10*1024*1024){showToast('⚠ File troppo grande (max 10MB)','err');continue;}
+    try{
+      showToast('📤 Caricamento '+f.name+'…','info');
+      const result=await uploadFile(f);
+      curFiles.push(result);
+      renderFileList();
+      showToast('✓ '+f.name+' caricato','ok');
+    }catch(err){showToast('⚠ Errore: '+err.message,'err');}
+  }
+  e.target.value='';
+}
+
+function dragOver(e){e.preventDefault();document.getElementById('uploadArea').classList.add('drag');}
+function dragLeave(){document.getElementById('uploadArea').classList.remove('drag');}
+function dropFile(e){
+  e.preventDefault();dragLeave();
+  const files=Array.from(e.dataTransfer.files);
+  handleFiles({target:{files},target:{value:'',files}});
+  // manual trigger
+  const fakeEvt={target:{files:e.dataTransfer.files,value:''}};
+  handleFiles(fakeEvt);
+}
+
+function renderFileList(){
+  document.getElementById('fileList').innerHTML=curFiles.map((f,i)=>{
+    const icon=f.type&&f.type.includes('pdf')?'📄':f.type&&f.type.includes('audio')?'🎵':f.type&&f.type.includes('image')?'🖼️':'📎';
+    return `<div class="file-item">
+      <span class="file-item-icon">${icon}</span>
+      <a class="file-item-name" href="${esc(f.url)}" target="_blank">${esc(f.name)}</a>
+      <button class="file-item-del" onclick="removeFile(${i})">✕</button>
+    </div>`;
+  }).join('');
+}
+function removeFile(i){curFiles.splice(i,1);renderFileList();}
+
+function fileIcon(type){
+  if(!type)return '📎';
+  if(type.includes('pdf'))return '📄';
+  if(type.includes('audio')||type.includes('wav')||type.includes('mp3'))return '🎵';
+  if(type.includes('image'))return '🖼️';
+  return '📎';
+}
+
+/* ── SYNC STATUS ── */
 function setSyncing(v){
   const d=document.getElementById('syncDot'),l=document.getElementById('syncLbl');
   if(v){d.className='sync-dot syncing';l.textContent='Salvataggio…';}
@@ -317,105 +431,186 @@ function setError(){
 let toastTimer;
 function showToast(msg,type=''){
   const t=document.getElementById('toast');
-  t.textContent=msg; t.className='toast '+(type||'');
+  t.textContent=msg;t.className='toast '+(type||'');
   requestAnimationFrame(()=>t.classList.add('show'));
   clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),2600);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2800);
 }
 
+/* ── FILTER STRIP ── */
 function renderFilterStrip(){
   document.getElementById('cnt-all').textContent=allievi.length;
-  document.getElementById('ftab-all').classList.toggle('on',selIns===null);
-  const onAll=selIns===null;
+  const onAll=selCorso===null;
+  document.getElementById('ftab-all').classList.toggle('on',onAll);
   document.getElementById('ftab-all').style.cssText=onAll?'background:var(--text);color:#000;border-color:transparent':'';
   document.querySelectorAll('.ftab:not(#ftab-all)').forEach(e=>e.remove());
   const strip=document.getElementById('filterStrip');
-  insegnanti.forEach(ins=>{
-    const cnt=allievi.filter(a=>a.insId===ins.id).length;
-    const on=selIns===ins.id;
+  corsi.forEach(c=>{
+    const cnt=allievi.filter(a=>a.corsoId===c.id).length;
+    const on=selCorso===c.id;
     const btn=document.createElement('button');
     btn.className='ftab';
-    btn.style.cssText=on?`background:${ins.color};color:#000;border-color:transparent`:'';
-    btn.innerHTML=`<span class="fdot" style="background:${ins.color}"></span>${esc(ins.nome.split(' ').slice(-1)[0])}<span class="fbadge">${cnt}</span>`;
-    btn.onclick=()=>selTeacher(ins.id);
+    btn.style.cssText=on?`background:${c.color};color:#000;border-color:transparent`:'';
+    btn.innerHTML=`<span class="fdot" style="background:${c.color}"></span>${esc(c.nome)}<span class="fbadge">${cnt}</span>`;
+    btn.onclick=()=>selCorsoFn(c.id);
     strip.appendChild(btn);
   });
 }
 
 function setAccent(c){document.documentElement.style.setProperty('--accent',c);}
-function selAll(){selIns=null;setAccent('#5b9cf6');renderFilterStrip();renderStats();renderCards();}
-function selTeacher(id){
-  selIns=id;
-  const ins=insegnanti.find(x=>x.id===id);if(!ins)return;
-  setAccent(ins.color);renderFilterStrip();renderStats();renderCards();
+function selAll(){selCorso=null;setAccent('#5b9cf6');renderFilterStrip();renderStats();renderCards();}
+function selCorsoFn(id){
+  selCorso=id;
+  const c=corsi.find(x=>x.id===id);if(!c)return;
+  setAccent(c.color);renderFilterStrip();renderStats();renderCards();
 }
 
+/* ── STATS ── */
 function renderStats(){
-  const pool=selIns===null?allievi:allievi.filter(a=>a.insId===selIns);
+  const pool=selCorso===null?allievi:allievi.filter(a=>a.corsoId===selCorso);
   const lvc={};
   pool.forEach(a=>{if(a.livello)lvc[a.livello]=(lvc[a.livello]||0)+1;});
   const top=Object.entries(lvc).sort((a,b)=>b[1]-a[1])[0];
   const brani=pool.reduce((s,a)=>s+(a.brani||[]).length,0);
+  const curC=selCorso?corsi.find(x=>x.id===selCorso):null;
   const items=[
-    {l:'Allievi',v:pool.length},{l:'Brani totali',v:brani},
+    {l:'Allievi',v:pool.length},
+    {l:'Brani totali',v:brani},
     {l:'Livello comune',v:top?LVM[top[0]]:'—'},
-    {l:selIns===null?'Insegnanti':'Corso',v:selIns===null?insegnanti.length:(insegnanti.find(x=>x.id===selIns)||{corso:'—'}).corso},
+    {l:curC?'Insegnante':'Corsi',v:curC?curC.insegnante:corsi.length},
   ];
   document.getElementById('statsRow').innerHTML=items.map(s=>
     `<div class="sc"><div class="sl">${s.l}</div><div class="sv">${s.v}</div></div>`).join('');
 }
 
+/* ── CARDS ── */
 function renderCards(){
   const q=document.getElementById('searchInput').value.toLowerCase();
-  let pool=selIns===null?[...allievi]:allievi.filter(a=>a.insId===selIns);
+  let pool=selCorso===null?[...allievi]:allievi.filter(a=>a.corsoId===selCorso);
   if(q) pool=pool.filter(a=>(a.nome+a.livello+(a.brani||[]).join(' ')+(a.note||'')).toLowerCase().includes(q));
   const cl=document.getElementById('cardList');
   if(!pool.length){
     cl.innerHTML=`<div class="empty-state"><span class="empty-icon">𝄾</span><span class="empty-txt">${allievi.length===0?'Nessun allievo ancora.<br>Tocca <strong>＋</strong> per iniziare.':'Nessun risultato.'}</span></div>`;
     return;
   }
-  cl.innerHTML=pool.map((a)=>{
-    const ins=insegnanti.find(x=>x.id===a.insId);
-    return `<div class="stu-card">
-      <div class="stu-card-top">
-        <div>
-          <div class="stu-name">${esc(a.nome)}</div>
-          <div class="stu-meta">${a.eta?a.eta+' anni · ':''}${ins?`<span style="color:${ins.color}">${esc(ins.corso)}</span>`:'—'}</div>
-        </div>
-        <div class="stu-actions">
-          <button class="sa" onclick="openStuModal(${a.id})">✏️</button>
-          <button class="sa del" onclick="delStu(${a.id})">🗑️</button>
-        </div>
-      </div>
-      ${a.livello?`<div class="stu-card-mid"><span class="badge lv-${a.livello}">${LVM[a.livello]}</span>${ins?`<span class="ins-chip"><span class="cdot" style="background:${ins.color}"></span>${esc(ins.nome)}</span>`:''}</div>`:''}
-      ${(a.brani||[]).length?`<div class="brani-row">${a.brani.map(b=>`<span class="bt">${esc(b)}</span>`).join('')}</div>`:''}
-      ${a.note?`<div class="note-txt">${esc(a.note)}</div>`:''}
-    </div>`;
-  }).join('');
+  if(selCorso===null){
+    let html='';
+    corsi.forEach(c=>{
+      const gruppo=pool.filter(a=>a.corsoId===c.id);
+      if(!gruppo.length)return;
+      html+=`<div class="section-header">
+        <span class="sh-dot" style="background:${c.color};box-shadow:0 0 7px ${c.color}"></span>
+        <span class="sh-title" style="color:${c.color}">${esc(c.nome)}</span>
+        <span class="sh-ins">${esc(c.insegnante)}</span>
+        <span class="sh-line"></span>
+        <button class="sh-edit" onclick="openCorsoModal(${c.id})">✏️</button>
+      </div>`;
+      html+=gruppo.map(a=>cardHtml(a,c)).join('');
+    });
+    const unassigned=pool.filter(a=>!corsi.find(c=>c.id===a.corsoId));
+    if(unassigned.length){
+      html+=`<div class="section-header"><span class="sh-title" style="color:var(--muted)">Senza corso</span><span class="sh-line"></span></div>`;
+      html+=unassigned.map(a=>cardHtml(a,null)).join('');
+    }
+    cl.innerHTML=html;
+  } else {
+    const c=corsi.find(x=>x.id===selCorso);
+    cl.innerHTML=pool.map(a=>cardHtml(a,c)).join('');
+  }
 }
 
+function cardHtml(a,c){
+  const files=a.files||[];
+  const filesHtml=files.length?`
+    <div class="mat-section-title">📚 Materiale didattico</div>
+    <div class="materiale-row">${files.map(f=>`
+      <a class="mat-link" href="${esc(f.url)}" target="_blank" rel="noopener">
+        <span class="mat-icon">${fileIcon(f.type)}</span>${esc(f.name)}
+      </a>`).join('')}
+    </div>`:'';
+  return `<div class="stu-card">
+    <div class="stu-card-top">
+      <div>
+        <div class="stu-name">${esc(a.nome)}</div>
+        <div class="stu-meta">${a.eta?a.eta+' anni · ':''}${c?`<span style="color:${c.color}">${esc(c.nome)}</span>`:'—'}</div>
+      </div>
+      <div class="stu-actions">
+        <button class="sa" onclick="openStuModal(${a.id})">✏️</button>
+        <button class="sa del" onclick="delStu(${a.id})">🗑️</button>
+      </div>
+    </div>
+    ${a.livello||c?`<div class="stu-card-mid">
+      ${a.livello?`<span class="badge lv-${a.livello}">${LVM[a.livello]}</span>`:''}
+      ${c?`<span style="font-size:10px;color:var(--muted)">${esc(c.insegnante)}</span>`:''}
+    </div>`:''}
+    ${(a.brani||[]).length?`<div class="brani-row">${a.brani.map(b=>`<span class="bt">${esc(b)}</span>`).join('')}</div>`:''}
+    ${a.note?`<div class="note-txt">${esc(a.note)}</div>`:''}
+    ${filesHtml}
+  </div>`;
+}
+
+/* ── CORSO MODAL ── */
+function buildCrow(){
+  document.getElementById('crowEl').innerHTML=COLORS.map(c=>
+    `<div class="copt${selColor===c?' sel':''}" style="background:${c}" onclick="pickC('${c}')"></div>`).join('');
+}
+function pickC(c){selColor=c;buildCrow();}
+function openCorsoModal(id=null){
+  editCorso=id;
+  if(id!==null){
+    const c=corsi.find(x=>x.id===id);
+    document.getElementById('corsoMT').textContent='Modifica Corso';
+    document.getElementById('cNome').value=c.nome;
+    document.getElementById('cIns').value=c.insegnante;
+    selColor=c.color;
+  } else {
+    document.getElementById('corsoMT').textContent='Nuovo Corso';
+    document.getElementById('cNome').value='';
+    document.getElementById('cIns').value='';
+    selColor=COLORS[corsi.length%COLORS.length];
+  }
+  buildCrow();
+  document.getElementById('corsoOv').classList.add('open');
+  setTimeout(()=>document.getElementById('cNome').focus(),300);
+}
+function closeCorso(){document.getElementById('corsoOv').classList.remove('open');}
+async function saveCorso(){
+  const nome=document.getElementById('cNome').value.trim();
+  const ins=document.getElementById('cIns').value.trim();
+  if(!nome||!ins)return;
+  const obj={id:editCorso!==null?editCorso:Date.now(),nome,insegnante:ins,color:selColor};
+  if(editCorso!==null){const idx=corsi.findIndex(x=>x.id===editCorso);corsi[idx]=obj;}
+  else corsi.push(obj);
+  if(selCorso===obj.id) setAccent(obj.color);
+  closeCorso();renderFilterStrip();renderStats();renderCards();
+  await apiSave();
+}
+
+/* ── ALLIEVO MODAL ── */
 function openStuModal(id=null){
-  editStu=id;curBrani=[];
-  if(!insegnanti.length){alert('Prima aggiungi un insegnante!');openInsModal();return;}
-  const sel=document.getElementById('fIns');
-  sel.innerHTML='<option value="">— Seleziona insegnante —</option>'+
-    insegnanti.map(i=>`<option value="${i.id}">${esc(i.nome)} — ${esc(i.corso)}</option>`).join('');
+  editStu=id;curBrani=[];curFiles=[];
+  if(!corsi.length){alert('Prima aggiungi almeno un corso!');openCorsoModal();return;}
+  const sel=document.getElementById('fCorso');
+  sel.innerHTML='<option value="">— Seleziona corso —</option>'+
+    corsi.map(c=>`<option value="${c.id}">${esc(c.nome)} (${esc(c.insegnante)})</option>`).join('');
   if(id!==null){
     const a=allievi.find(x=>x.id===id);
     document.getElementById('stuMT').textContent='Modifica Allievo';
     document.getElementById('fNome').value=a.nome;
     document.getElementById('fEta').value=a.eta||'';
-    sel.value=a.insId||'';
+    sel.value=a.corsoId||'';
     document.getElementById('fLv').value=a.livello||'';
     document.getElementById('fNote').value=a.note||'';
     curBrani=[...(a.brani||[])];
+    curFiles=[...(a.files||[])];
   } else {
     document.getElementById('stuMT').textContent='Nuovo Allievo';
     ['fNome','fEta','fNote'].forEach(x=>document.getElementById(x).value='');
-    sel.value=selIns||'';document.getElementById('fLv').value='';
+    sel.value=selCorso||'';document.getElementById('fLv').value='';
   }
   document.getElementById('fBrano').value='';
-  renderBP();
+  hideUploadProgress();
+  renderBP();renderFileList();
   document.getElementById('stuOv').classList.add('open');
   setTimeout(()=>document.getElementById('fNome').focus(),300);
 }
@@ -433,15 +628,16 @@ function renderBP(){
 }
 async function saveStu(){
   const nome=document.getElementById('fNome').value.trim();
-  const insId=parseInt(document.getElementById('fIns').value);
+  const corsoId=parseInt(document.getElementById('fCorso').value);
   if(!nome){document.getElementById('fNome').focus();return;}
-  if(!insId){document.getElementById('fIns').focus();return;}
+  if(!corsoId){document.getElementById('fCorso').focus();return;}
   const typed=document.getElementById('fBrano').value.trim();
   if(typed&&!curBrani.includes(typed))curBrani.push(typed);
   const obj={id:editStu!==null?editStu:Date.now(),nome,
-    eta:document.getElementById('fEta').value||'',insId,
+    eta:document.getElementById('fEta').value||'',corsoId,
     livello:document.getElementById('fLv').value,
-    brani:[...curBrani],note:document.getElementById('fNote').value.trim()};
+    brani:[...curBrani],note:document.getElementById('fNote').value.trim(),
+    files:[...curFiles]};
   if(editStu!==null){const idx=allievi.findIndex(x=>x.id===editStu);allievi[idx]=obj;}
   else allievi.push(obj);
   closeStu();renderFilterStrip();renderStats();renderCards();
@@ -455,44 +651,9 @@ async function delStu(id){
   }
 }
 
-function buildCrow(){
-  document.getElementById('crowEl').innerHTML=COLORS.map(c=>
-    `<div class="copt${selColor===c?' sel':''}" style="background:${c}" onclick="pickC('${c}')"></div>`).join('');
-}
-function pickC(c){selColor=c;buildCrow();}
-function openInsModal(id=null){
-  editIns=id;
-  if(id!==null){
-    const ins=insegnanti.find(x=>x.id===id);
-    document.getElementById('insMT').textContent='Modifica Insegnante';
-    document.getElementById('iNome').value=ins.nome;
-    document.getElementById('iCorso').value=ins.corso;
-    selColor=ins.color;
-  } else {
-    document.getElementById('insMT').textContent='Nuovo Insegnante / Corso';
-    document.getElementById('iNome').value='';
-    document.getElementById('iCorso').value='';
-    selColor=COLORS[insegnanti.length%COLORS.length];
-  }
-  buildCrow();
-  document.getElementById('insOv').classList.add('open');
-  setTimeout(()=>document.getElementById('iNome').focus(),300);
-}
-function closeIns(){document.getElementById('insOv').classList.remove('open');}
-async function saveIns(){
-  const nome=document.getElementById('iNome').value.trim();
-  const corso=document.getElementById('iCorso').value.trim();
-  if(!nome||!corso)return;
-  const obj={id:editIns!==null?editIns:Date.now(),nome,corso,color:selColor};
-  if(editIns!==null){const idx=insegnanti.findIndex(x=>x.id===editIns);insegnanti[idx]=obj;}
-  else insegnanti.push(obj);
-  closeIns();renderFilterStrip();renderStats();renderCards();
-  await apiSave();
-}
-
 function esc(s=''){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function ovClick(e,id){if(e.target===document.getElementById(id)){id==='stuOv'?closeStu():closeIns();}}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeStu();closeIns();}});
+function ovClick(e,id){if(e.target===document.getElementById(id)){id==='stuOv'?closeStu():closeCorso();}}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeStu();closeCorso();}});
 
 (async()=>{
   await apiGet();
