@@ -7,127 +7,266 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f4f6fb;--surface:#fff;--card:#fff;--card2:#f0f3fa;--border:#e2e6f0;--border2:#d0d6e8;--text:#1a1f2e;--muted:#7a82a0;--faint:#c8cfe8;--accent:#3a6bcc;--accent-lt:#eef3ff}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
 body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospace;min-height:100vh;padding-bottom:90px}
+
 .topbar{background:var(--surface);border-bottom:2px solid var(--border);padding:0 16px;display:flex;align-items:center;gap:10px;height:56px;position:sticky;top:0;z-index:50;box-shadow:0 2px 12px rgba(58,107,204,.08)}
+
 .logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px}
+
 .logo .clef{font-size:24px;color:var(--accent)}
+
 .sync-row{margin-left:auto;display:flex;align-items:center;gap:6px}
+
 .sync-dot{width:8px;height:8px;border-radius:50%;background:#2e7d52;box-shadow:0 0 6px rgba(46,125,82,.4)}
+
 .sync-dot.syncing{background:#c9a84c;animation:pulse 1s infinite}
+
 .sync-dot.error{background:#c0574a}
+
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
 .sync-lbl{font-size:9px;color:var(--muted);letter-spacing:.1em}
+
 .topbar-desktop-btns{display:none;gap:9px;margin-left:12px}
+
 .btn-dt{display:flex;align-items:center;gap:7px;padding:8px 16px;border-radius:8px;border:none;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .2s}
+
 .btn-dt-corso{background:var(--card2);color:var(--muted);border:1px solid var(--border2)}
+
 .btn-dt-corso:hover{border-color:var(--accent);color:var(--accent)}
+
 .btn-dt-stu{background:var(--accent);color:#fff}
+
+/* ===== FILTER STRIP ===== */
 .filter-strip{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:56px;z-index:40}
+
 .filter-strip::-webkit-scrollbar{display:none}
+
 .ftab{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:20px;border:1px solid var(--border2);background:none;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:11px;white-space:nowrap;cursor:pointer;transition:all .15s;flex-shrink:0}
+
 .ftab .fdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
 .ftab .fbadge{background:rgba(0,0,0,.08);border-radius:20px;padding:1px 7px;font-size:10px}
+
+/* NUOVO: nome insegnante sotto il nome del corso nel filtro */
+.ftab-inner{display:flex;flex-direction:column;align-items:flex-start;gap:1px}
+.ftab-nome{font-size:11px;line-height:1.2}
+.ftab-ins{font-size:9px;opacity:0.75;letter-spacing:.05em}
+
 .action-bar{padding:14px 16px;display:flex;gap:10px;align-items:center}
+
 .search-w{flex:1;position:relative}
+
 .search-w input{width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:8px;padding:10px 13px 10px 36px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:13px;outline:none;-webkit-appearance:none;transition:border-color .2s;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+
 .search-w input:focus{border-color:var(--accent)}
+
 .search-w input::placeholder{color:var(--muted)}
+
 .search-w .si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
+
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:0 16px 14px}
+
 .sc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+
 .sl{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+
 .sv{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--accent);line-height:1}
+
 .card-list{padding:0 16px;display:flex;flex-direction:column;gap:10px}
+
 .section-header{display:flex;align-items:center;gap:10px;padding:16px 0 6px}
+
 .sh-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+
+/* NUOVO: colonna nome+insegnante nell'intestazione sezione */
+.sh-info{display:flex;flex-direction:column;gap:1px}
 .sh-title{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
 .sh-ins{font-size:10px;color:var(--muted);flex-shrink:0}
+
 .sh-line{flex:1;height:1px;background:var(--border)}
+
 .sh-edit{background:none;border:none;cursor:pointer;color:var(--faint);font-size:12px;padding:0 2px;flex-shrink:0}
+
 .stu-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+
 .stu-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+
 .stu-name{font-size:14px;font-weight:500;color:var(--text)}
+
 .stu-meta{font-size:10px;color:var(--muted);margin-top:3px}
+
 .stu-actions{display:flex;gap:6px;flex-shrink:0}
+
 .sa{background:none;border:1px solid var(--border2);border-radius:7px;padding:6px 9px;cursor:pointer;font-size:13px;color:var(--muted);transition:all .14s}
+
 .sa:hover{background:var(--accent-lt);border-color:var(--accent);color:var(--accent)}
+
 .sa.del:hover{background:#fdecea;border-color:#c0574a;color:#c0574a}
+
 .stu-card-mid{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+
 .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+
 .lv-principiante{background:#e8f8ef;color:#2e7d52;border:1px solid #b8e8cc}
 .lv-base{background:#eef3ff;color:#3a6bcc;border:1px solid #b8ccf0}
 .lv-intermedio{background:#fff8e6;color:#8b6200;border:1px solid #f0d888}
 .lv-avanzato{background:#fff0e6;color:#8b3a00;border:1px solid #f0c488}
 .lv-esperto{background:#fdecea;color:#8b1a1a;border:1px solid #f0aaaa}
+
 .brani-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+
 .bt{display:inline-block;background:var(--card2);border:1px solid var(--border);border-radius:5px;padding:2px 8px;font-size:10px;color:var(--text)}
+
 .note-txt{font-size:11px;color:var(--muted);font-style:italic;line-height:1.5;margin-bottom:6px;padding:6px 10px;background:var(--card2);border-radius:6px}
+
 .note-txt a{color:var(--accent)}
+
 .mat-section-title{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;margin-top:8px}
+
 .materiale-row{display:flex;flex-wrap:wrap;gap:6px}
+
 .mat-link{display:inline-flex;align-items:center;gap:5px;background:var(--accent-lt);border:1px solid rgba(58,107,204,.2);border-radius:6px;padding:5px 10px;font-size:10px;color:var(--accent);text-decoration:none}
+
 .upload-area{border:2px dashed var(--border2);border-radius:10px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;background:var(--card2)}
+
 .upload-area:hover,.upload-area.drag{border-color:var(--accent);background:var(--accent-lt)}
+
 .upload-area input{display:none}
+
 .upload-icon{font-size:28px;display:block;margin-bottom:8px}
+
 .upload-txt{font-size:11px;color:var(--muted);line-height:1.6}
+
 .upload-progress{margin-top:10px;display:none}
+
 .prog-bar-wrap{background:var(--border);border-radius:4px;height:5px;overflow:hidden}
+
 .prog-bar{height:100%;background:var(--accent);border-radius:4px;transition:width .3s;width:0%}
+
 .prog-txt{font-size:10px;color:var(--muted);margin-top:5px}
+
 .file-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+
 .file-item{display:flex;align-items:center;gap:8px;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:8px 11px}
+
 .file-item-icon{font-size:16px;flex-shrink:0}
+
 .file-item-name{flex:1;font-size:11px;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
 .file-item-del{background:none;border:none;cursor:pointer;color:var(--faint);font-size:14px;padding:0}
+
 .empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
+
 .empty-icon{font-size:40px;display:block;margin-bottom:12px;opacity:.3}
+
 .empty-txt{font-size:12px;line-height:1.7}
+
 .fab-row{position:fixed;bottom:20px;right:16px;display:flex;flex-direction:column;gap:10px;z-index:60}
+
 .fab{width:54px;height:54px;border-radius:50%;border:none;cursor:pointer;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(58,107,204,.3);transition:transform .15s;-webkit-tap-highlight-color:transparent}
+
 .fab:active{transform:scale(.92)}
+
 .fab-main{background:var(--accent);color:#fff}
+
 .fab-corso{background:var(--surface);color:var(--accent);border:2px solid var(--accent);font-size:18px}
+
 .ov{display:none;position:fixed;inset:0;background:rgba(26,31,46,.6);backdrop-filter:blur(4px);z-index:200;align-items:flex-end;justify-content:center}
+
 .ov.open{display:flex}
+
 .mo{background:var(--surface);border:1px solid var(--border);border-radius:20px 20px 0 0;width:100%;max-height:92vh;overflow-y:auto;animation:slideUp .25s ease;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -8px 40px rgba(0,0,0,.15)}
+
 @media(min-width:600px){.ov{align-items:center;padding:20px}.mo{border-radius:16px;max-width:580px;max-height:90vh}}
+
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+
 .mo-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:10px auto 0}
+
 .mh{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 14px;border-bottom:1px solid var(--border)}
+
 .mt{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:700;color:var(--text)}
+
 .bx{background:none;border:none;cursor:pointer;color:var(--muted);font-size:18px;padding:4px;border-radius:6px}
+
 .mb{padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+
 .fi{display:flex;flex-direction:column;gap:6px}
+
 .fi label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
 .fi input,.fi select,.fi textarea{background:var(--card2);border:1.5px solid var(--border2);border-radius:9px;padding:11px 13px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:14px;outline:none;-webkit-appearance:none;resize:vertical;width:100%;transition:border-color .2s}
+
 .fi input:focus,.fi select:focus,.fi textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(58,107,204,.1);background:var(--surface)}
+
 .fi select option{background:var(--surface)}
+
 .fi textarea{min-height:74px}
+
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
 .btagrow{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+
 .btag2{display:inline-flex;align-items:center;gap:5px;background:var(--accent-lt);border:1px solid rgba(58,107,204,.2);border-radius:6px;padding:4px 10px;font-size:12px;color:var(--accent)}
+
 .btag2 button{background:none;border:none;cursor:pointer;color:var(--muted);font-size:13px;line-height:1;padding:0}
+
 .mf{padding:12px 20px 20px;display:flex;gap:10px;border-top:1px solid var(--border)}
+
 .bcancel{flex:1;background:var(--card2);border:1px solid var(--border2);border-radius:9px;padding:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:12px;cursor:pointer}
+
 .bsave{flex:2;background:var(--accent);border:none;border-radius:9px;padding:13px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;cursor:pointer}
+
 .bsave:disabled{opacity:.4}
-.bdel{flex:1;background:#fdecea;border:1px solid #f0aaaa;border-radius:9px;padding:13px;color:#c0574a;font-family:'JetBrains Mono',monospace;font-size:12px;cursor:pointer;display:none}
+
+/* ===== TASTO ELIMINA CORSO - ora sempre visibile in modifica ===== */
+.bdel{
+  flex:1;
+  background:#fdecea;
+  border:1px solid #f0aaaa;
+  border-radius:9px;
+  padding:13px;
+  color:#c0574a;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  cursor:pointer;
+  display:none; /* mostrato via JS solo in modalità modifica */
+  transition: background .15s, border-color .15s;
+}
+.bdel:hover{background:#fbd5d2;border-color:#c0574a;}
+
 .crow{display:flex;gap:9px;flex-wrap:wrap;margin-top:4px}
+
 .copt{width:30px;height:30px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:transform .14s}
+
 .copt:hover{transform:scale(1.15)}
+
 .copt.sel{border-color:var(--text)}
+
 .toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%) translateY(40px);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:11px 20px;font-size:12px;color:var(--text);z-index:300;transition:transform .3s,opacity .3s;opacity:0;white-space:nowrap;pointer-events:none;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
 .toast.ok{border-color:#2e7d52;color:#2e7d52}
+
 .toast.err{border-color:#c0574a;color:#c0574a}
+
 .toast.info{border-color:var(--accent);color:var(--accent)}
+
 .loading-screen{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+
 .loading-screen.hidden{display:none}
+
 .loading-clef{font-size:52px;color:var(--accent);animation:rot 2s linear infinite;display:block}
+
 @keyframes rot{to{transform:rotate(360deg)}}
+
 .loading-txt{font-size:11px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase}
+
 @media(min-width:860px){
   body{padding-bottom:0}
   .fab-row{display:none}
@@ -146,6 +285,7 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
   <span class="loading-clef">𝄞</span>
   <span class="loading-txt">Caricamento…</span>
 </div>
+
 <div class="toast" id="toast"></div>
 
 <div class="topbar">
@@ -183,87 +323,87 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 
 <!-- MODAL CORSO -->
 <div class="ov" id="corsoOv" onclick="ovClick(event,'corsoOv')">
- <div class="mo">
-  <div class="mo-handle"></div>
-  <div class="mh">
-   <span class="mt" id="corsoMT">Nuovo Corso</span>
-   <button class="bx" onclick="closeCorso()">✕</button>
+  <div class="mo">
+    <div class="mo-handle"></div>
+    <div class="mh">
+      <span class="mt" id="corsoMT">Nuovo Corso</span>
+      <button class="bx" onclick="closeCorso()">✕</button>
+    </div>
+    <div class="mb">
+      <div class="fi"><label>Nome Corso / Strumento *</label>
+        <input id="cNome" placeholder="es. Pianoforte, Chitarra…" autocomplete="off">
+      </div>
+      <div class="fi"><label>Insegnante *</label>
+        <input id="cIns" placeholder="es. Prof.ssa Laura Bianchi" autocomplete="off">
+      </div>
+      <div class="fi"><label>Colore</label>
+        <div class="crow" id="crowEl"></div>
+      </div>
+    </div>
+    <div class="mf">
+      <button class="bcancel" onclick="closeCorso()">Annulla</button>
+      <button class="bdel" id="corsoDelBtn" onclick="delCorso()">🗑️ Elimina corso</button>
+      <button class="bsave" id="corsoSaveBtn" onclick="saveCorso()">Salva</button>
+    </div>
   </div>
-  <div class="mb">
-   <div class="fi"><label>Nome Corso / Strumento *</label>
-    <input id="cNome" placeholder="es. Pianoforte, Chitarra…" autocomplete="off">
-   </div>
-   <div class="fi"><label>Insegnante *</label>
-    <input id="cIns" placeholder="es. Prof.ssa Laura Bianchi" autocomplete="off">
-   </div>
-   <div class="fi"><label>Colore</label>
-    <div class="crow" id="crowEl"></div>
-   </div>
-  </div>
-  <div class="mf">
-   <button class="bcancel" onclick="closeCorso()">Annulla</button>
-   <button class="bdel" id="corsoDelBtn" onclick="delCorso()">🗑️ Elimina</button>
-   <button class="bsave" id="corsoSaveBtn" onclick="saveCorso()">Salva</button>
-  </div>
- </div>
 </div>
 
 <!-- MODAL ALLIEVO -->
 <div class="ov" id="stuOv" onclick="ovClick(event,'stuOv')">
- <div class="mo">
-  <div class="mo-handle"></div>
-  <div class="mh">
-   <span class="mt" id="stuMT">Nuovo Allievo</span>
-   <button class="bx" onclick="closeStu()">✕</button>
+  <div class="mo">
+    <div class="mo-handle"></div>
+    <div class="mh">
+      <span class="mt" id="stuMT">Nuovo Allievo</span>
+      <button class="bx" onclick="closeStu()">✕</button>
+    </div>
+    <div class="mb">
+      <div class="fi"><label>Nome e Cognome *</label>
+        <input id="fNome" placeholder="es. Marco Rossi" autocomplete="off">
+      </div>
+      <div class="row2">
+        <div class="fi"><label>Età</label>
+          <input type="number" id="fEta" placeholder="es. 14" min="1" max="99">
+        </div>
+        <div class="fi"><label>Livello</label>
+          <select id="fLv">
+            <option value="">— Livello —</option>
+            <option value="principiante">Principiante</option>
+            <option value="base">Base</option>
+            <option value="intermedio">Intermedio</option>
+            <option value="avanzato">Avanzato</option>
+            <option value="esperto">Esperto</option>
+          </select>
+        </div>
+      </div>
+      <div class="fi"><label>Corso *</label><select id="fCorso"></select></div>
+      <div class="fi">
+        <label>Brani (scrivi e premi Invio)</label>
+        <input id="fBrano" placeholder="es. Fur Elise…" autocomplete="off" onkeydown="addB(event)">
+        <div class="btagrow" id="bprev"></div>
+      </div>
+      <div class="fi"><label>Note & Specifiche</label>
+        <textarea id="fNote" placeholder="es. disponibile il giovedì, preferisce jazz…"></textarea>
+      </div>
+      <div class="fi">
+        <label>Materiale Didattico (PDF, Audio, Spartiti)</label>
+        <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()"
+          ondragover="dragOver(event)" ondragleave="dragLeave()" ondrop="dropFile(event)">
+          <input type="file" id="fileInput" accept=".pdf,.wav,.mp3,.mp4,.jpg,.jpeg,.png,.doc,.docx,.txt,.midi,.mid" multiple onchange="handleFiles(event)">
+          <span class="upload-icon">📁</span>
+          <span class="upload-txt">Tocca per scegliere file o trascina qui<br><small>PDF · WAV/MP3 · Spartiti · max 5MB</small></span>
+        </div>
+        <div class="upload-progress" id="uploadProgress">
+          <div class="prog-bar-wrap"><div class="prog-bar" id="progBar"></div></div>
+          <div class="prog-txt" id="progTxt">Caricamento…</div>
+        </div>
+        <div class="file-list" id="fileList"></div>
+      </div>
+    </div>
+    <div class="mf">
+      <button class="bcancel" onclick="closeStu()">Annulla</button>
+      <button class="bsave" id="stuSaveBtn" onclick="saveStu()">Salva Allievo</button>
+    </div>
   </div>
-  <div class="mb">
-   <div class="fi"><label>Nome e Cognome *</label>
-    <input id="fNome" placeholder="es. Marco Rossi" autocomplete="off">
-   </div>
-   <div class="row2">
-    <div class="fi"><label>Età</label>
-     <input type="number" id="fEta" placeholder="es. 14" min="1" max="99">
-    </div>
-    <div class="fi"><label>Livello</label>
-     <select id="fLv">
-      <option value="">— Livello —</option>
-      <option value="principiante">Principiante</option>
-      <option value="base">Base</option>
-      <option value="intermedio">Intermedio</option>
-      <option value="avanzato">Avanzato</option>
-      <option value="esperto">Esperto</option>
-     </select>
-    </div>
-   </div>
-   <div class="fi"><label>Corso *</label><select id="fCorso"></select></div>
-   <div class="fi">
-    <label>Brani (scrivi e premi Invio)</label>
-    <input id="fBrano" placeholder="es. Fur Elise…" autocomplete="off" onkeydown="addB(event)">
-    <div class="btagrow" id="bprev"></div>
-   </div>
-   <div class="fi"><label>Note & Specifiche</label>
-    <textarea id="fNote" placeholder="es. disponibile il giovedì, preferisce jazz…"></textarea>
-   </div>
-   <div class="fi">
-    <label>Materiale Didattico (PDF, Audio, Spartiti)</label>
-    <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()"
-         ondragover="dragOver(event)" ondragleave="dragLeave()" ondrop="dropFile(event)">
-     <input type="file" id="fileInput" accept=".pdf,.wav,.mp3,.mp4,.jpg,.jpeg,.png,.doc,.docx,.txt,.midi,.mid" multiple onchange="handleFiles(event)">
-     <span class="upload-icon">📁</span>
-     <span class="upload-txt">Tocca per scegliere file o trascina qui<br><small>PDF · WAV/MP3 · Spartiti · max 5MB</small></span>
-    </div>
-    <div class="upload-progress" id="uploadProgress">
-     <div class="prog-bar-wrap"><div class="prog-bar" id="progBar"></div></div>
-     <div class="prog-txt" id="progTxt">Caricamento…</div>
-    </div>
-    <div class="file-list" id="fileList"></div>
-   </div>
-  </div>
-  <div class="mf">
-   <button class="bcancel" onclick="closeStu()">Annulla</button>
-   <button class="bsave" id="stuSaveBtn" onclick="saveStu()">Salva Allievo</button>
-  </div>
- </div>
 </div>
 
 <script>
@@ -342,6 +482,7 @@ function setSyncing(v){
   if(v){d.className='sync-dot syncing';l.textContent='Salvataggio…';}
   else{d.className='sync-dot';l.textContent='Connesso';}
 }
+
 function setError(){document.getElementById('syncDot').className='sync-dot error';document.getElementById('syncLbl').textContent='Errore';}
 
 let toastTimer;
@@ -400,20 +541,30 @@ function renderFileList(){
 }
 function removeFile(i){curFiles.splice(i,1);renderFileList();}
 
+/* ===== FILTER STRIP con nome insegnante ===== */
 function renderFilterStrip(){
   document.getElementById('cnt-all').textContent=allievi.length;
   const onAll=selCorso===null;
   const tall=document.getElementById('ftab-all');
   tall.style.cssText=onAll?`background:${COLORS[0]};color:#fff;border-color:transparent`:'';
+
   document.querySelectorAll('.ftab:not(#ftab-all)').forEach(e=>e.remove());
   const strip=document.getElementById('filterStrip');
+
   corsi.forEach(c=>{
     const cnt=allievi.filter(a=>a.corsoId===c.id).length;
     const on=selCorso===c.id;
     const btn=document.createElement('button');
     btn.className='ftab';
     btn.style.cssText=on?`background:${c.color};color:#fff;border-color:transparent`:'';
-    btn.innerHTML=`<span class="fdot" style="background:${c.color}"></span>${esc(c.nome)}<span class="fbadge">${cnt}</span>`;
+    // MODIFICA: mostra nome corso + insegnante su riga separata
+    btn.innerHTML=`
+      <span class="fdot" style="background:${c.color}"></span>
+      <span class="ftab-inner">
+        <span class="ftab-nome">${esc(c.nome)}</span>
+        <span class="ftab-ins">${esc(c.insegnante)}</span>
+      </span>
+      <span class="fbadge">${cnt}</span>`;
     btn.onclick=()=>selCorsoFn(c.id);
     strip.appendChild(btn);
   });
@@ -449,12 +600,15 @@ function renderCards(){
     corsi.forEach(c=>{
       const gruppo=pool.filter(a=>a.corsoId===c.id);
       if(!gruppo.length)return;
+      // MODIFICA: insegnante visibile nell'intestazione sezione
       html+=`<div class="section-header">
         <span class="sh-dot" style="background:${c.color}"></span>
-        <span class="sh-title" style="color:${c.color}">${esc(c.nome)}</span>
-        <span class="sh-ins">${esc(c.insegnante)}</span>
+        <span class="sh-info">
+          <span class="sh-title" style="color:${c.color}">${esc(c.nome)}</span>
+          <span class="sh-ins">👤 ${esc(c.insegnante)}</span>
+        </span>
         <span class="sh-line"></span>
-        <button class="sh-edit" onclick="openCorsoModal(${c.id})">✏️</button>
+        <button class="sh-edit" title="Modifica corso" onclick="openCorsoModal(${c.id})">✏️</button>
       </div>`;
       html+=gruppo.map(a=>cardHtml(a,c)).join('');
     });
@@ -504,6 +658,7 @@ function buildCrow(){
 }
 function pickC(c){selColor=c;buildCrow();}
 
+/* ===== MODAL CORSO: mostra/nasconde tasto elimina ===== */
 function openCorsoModal(id=null){
   editCorso=id;
   const delBtn=document.getElementById('corsoDelBtn');
@@ -513,18 +668,19 @@ function openCorsoModal(id=null){
     document.getElementById('cNome').value=c.nome;
     document.getElementById('cIns').value=c.insegnante;
     selColor=c.color;
-    delBtn.style.display='block';
+    delBtn.style.display='block'; // VISIBILE in modifica
   } else {
     document.getElementById('corsoMT').textContent='Nuovo Corso';
     document.getElementById('cNome').value='';
     document.getElementById('cIns').value='';
     selColor=COLORS[corsi.length%COLORS.length];
-    delBtn.style.display='none';
+    delBtn.style.display='none'; // NASCOSTO per nuovi corsi
   }
   buildCrow();
   document.getElementById('corsoOv').classList.add('open');
   setTimeout(()=>document.getElementById('cNome').focus(),300);
 }
+
 function closeCorso(){document.getElementById('corsoOv').classList.remove('open');}
 
 async function saveCorso(){
@@ -539,14 +695,22 @@ async function saveCorso(){
   await apiSave();
 }
 
+/* ===== ELIMINA CORSO con messaggio chiaro ===== */
 async function delCorso(){
   const cnt=allievi.filter(a=>a.corsoId===editCorso).length;
-  const msg=cnt>0?`Questo corso ha ${cnt} allievi. Eliminando il corso rimarranno senza corso. Continuare?`:'Eliminare questo corso?';
+  const c=corsi.find(x=>x.id===editCorso);
+  let msg;
+  if(cnt>0){
+    msg=`⚠️ Il corso "${c.nome}" ha ${cnt} allievo/i.\n\nEliminando il corso, gli allievi rimarranno nel database ma senza corso assegnato.\n\nVuoi continuare?`;
+  } else {
+    msg=`Eliminare il corso "${c.nome}"?\n\nIl corso è vuoto, verrà rimosso definitivamente.`;
+  }
   if(confirm(msg)){
     corsi=corsi.filter(x=>x.id!==editCorso);
     if(selCorso===editCorso){selCorso=null;setAccent(COLORS[0]);}
     closeCorso();renderFilterStrip();renderStats();renderCards();
     await apiSave();
+    showToast('🗑️ Corso eliminato','ok');
   }
 }
 
@@ -576,18 +740,21 @@ function openStuModal(id=null){
   document.getElementById('stuOv').classList.add('open');
   setTimeout(()=>document.getElementById('fNome').focus(),300);
 }
+
 function closeStu(){document.getElementById('stuOv').classList.remove('open');}
+
 function addB(e){
   if(e.key==='Enter'){e.preventDefault();
-  const v=e.target.value.trim();
-  if(v&&!curBrani.includes(v)){curBrani.push(v);renderBP();}
-  e.target.value='';}
+    const v=e.target.value.trim();
+    if(v&&!curBrani.includes(v)){curBrani.push(v);renderBP();}
+    e.target.value='';}
 }
 function removeB(i){curBrani.splice(i,1);renderBP();}
 function renderBP(){
   document.getElementById('bprev').innerHTML=curBrani.map((b,i)=>
     `<span class="btag2">${esc(b)}<button onclick="removeB(${i})">✕</button></span>`).join('');
 }
+
 async function saveStu(){
   const nome=document.getElementById('fNome').value.trim();
   const corsoId=parseInt(document.getElementById('fCorso').value);
@@ -605,6 +772,7 @@ async function saveStu(){
   closeStu();renderFilterStrip();renderStats();renderCards();
   await apiSave();
 }
+
 async function delStu(id){
   if(confirm('Eliminare questo allievo?')){
     allievi=allievi.filter(x=>x.id!==id);
