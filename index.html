@@ -55,6 +55,8 @@ body{background:var(--bg);color:var(--text);font-family:'JetBrains Mono',monospa
 .ftab-inner{display:flex;flex-direction:column;align-items:flex-start;gap:1px}
 .ftab-nome{font-size:11px;line-height:1.2}
 .ftab-ins{font-size:9px;opacity:0.75;letter-spacing:.05em}
+.ftab-edit{background:none;border:none;cursor:pointer;font-size:12px;padding:2px 4px;margin-left:2px;border-radius:5px;flex-shrink:0;opacity:0.6;line-height:1;-webkit-tap-highlight-color:transparent}
+.ftab-edit:hover{opacity:1;background:rgba(0,0,0,.08)}
 
 .action-bar{padding:14px 16px;display:flex;gap:10px;align-items:center}
 
@@ -574,8 +576,17 @@ function renderFilterStrip(){
         <span class="ftab-nome">${esc(c.nome)}</span>
         <span class="ftab-ins">${esc(c.insegnante)}</span>
       </span>
-      <span class="fbadge">${cnt}</span>`;
-    btn.onclick=()=>selCorsoFn(c.id);
+      <span class="fbadge">${cnt}</span>
+      <span class="ftab-edit" title="Modifica corso">✏️</span>`;
+    btn.onclick=(e)=>{
+      // Se clicca la matita apre il modal di modifica
+      if(e.target.classList.contains('ftab-edit')){
+        e.stopPropagation();
+        openCorsoModal(c.id);
+        return;
+      }
+      selCorsoFn(c.id);
+    };
     strip.appendChild(btn);
   });
 }
